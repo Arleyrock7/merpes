@@ -1,0 +1,52 @@
+<section class="login">
+	<div class="container">
+	<div class="row d-flex justify-content-center">
+		<form [formGroup]="loginForm" (ngSubmit)="agregar()">  
+			<hr>
+			<div class="formGroup col-12">
+			<p>Introduzca sus datos de usuario</p>
+
+			</div>
+			
+			<div class="col-12">
+				<input type="text"
+				        class="form-control"
+				        id="email"
+				        placeholder="Su email"
+				        formControlName="email">
+			</div>
+
+			<div class="col-12">
+			<label for="">Contraseña</label>
+			<input type="password" 
+			       id="inputPassword" 
+			       class="form-control"
+			       formControlName="password">
+			</div>
+			
+			<br>
+			<div class="col-12">
+				<button type="submit"
+						class="btn btn-primary"
+						[disabled]="!loginForm.valid">
+					Inicie sesión
+				</button>
+			</div>
+			<hr>
+		</form>
+	</div>
+
+	<!--<hr>
+		<pre>
+			Datos del formulario: {{ loginForm.value | json}}
+		</pre>
+		<pre>
+			Estado del formulario: {{ loginForm.status | json }}
+		</pre>
+		<pre>
+			Valor del objeto: {{ registro | json }}
+		</pre>
+	<hr>-->
+
+</div>
+</section>

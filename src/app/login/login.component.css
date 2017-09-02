@@ -1,0 +1,23 @@
+.login {
+	background-color: #B153B5;
+	height: 100vh;
+	color: white;
+    font-weight: 100;
+}
+.btn-primary.disabled, .btn-primary:disabled {
+    background-color: white;
+    border-color: white;
+    color: #B153B5;
+}
+.btn-primary {
+    color: #B153B5;
+    background-color: white;
+    border-color: white;
+}
+
+input.ng-invalid.ng-touched {
+    border-left: 5px solid rgb(255, 120, 207);
+}
+input.ng-valid.ng-dirty {
+    border-left: 5px solid #8effa8;
+}

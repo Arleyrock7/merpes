@@ -1,0 +1,11 @@
+.bienvenido {
+	background-color: rgba(0, 128, 0, 0.28);
+    color: green;
+    padding: 20px;
+}
+a {
+    color: rgba(128, 128, 128, 0.61);
+}
+a:hover {
+    color: gray;
+}

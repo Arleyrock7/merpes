@@ -1,0 +1,197 @@
+<div class="container" *ngIf="_registroService.siAutenticado()">
+	
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="row">
+				<div class="col-xs-4 col-ms-4 col-md-4">
+					<form class="form-horizontal" [formGroup]="mesForm" (ngSubmit)="enviar()">
+				  <div class="form-group">
+				  <h3>Porcentaje de ventas</h3>
+				    <!--<label class="control-label col-sm-2" for="mes1">Mes 1</label>-->
+				      <div class="col-12">
+					    <select class="form-control" id="mes1" formControlName="mes1"><!-- formControlName="rol" -->
+					      <option value="">Primer mes</option>
+					      <option value="0.25">25%</option>
+					      <option value="0.50">50%</option>
+					      <option value="0.75">75%</option>
+					      <option value="100">100%</option>
+					    </select>
+					    <!--<i class="fa fa-check-circle check" *ngIf="mesForm.controls.mes1.valid">
+					    </i>
+					    <i class="fa fa-exclamation-circle uncheck" *ngIf="mesForm.controls.mes1.invalid && mesForm.controls.mes1.touched">
+					    </i>-->
+					</div>
+					<br>
+				      <div class="col-12">
+					    <select class="form-control" id="mes2" formControlName="mes2"><!-- formControlName="rol" -->
+					      <option value="">Segundo mes</option>
+					      <option value="0.25">25%</option>
+					      <option value="0.50">50%</option>
+					      <option value="0.75">75%</option>
+					      <option value="100">100%</option>
+					    </select>
+					    <!--<i class="fa fa-check-circle check" *ngIf="mesForm.controls.mes1.valid">
+					    </i>
+					    <i class="fa fa-exclamation-circle uncheck" *ngIf="mesForm.controls.mes1.invalid && mesForm.controls.mes1.touched">
+					    </i>-->
+					</div>
+					<br>
+				      <div class="col-12">
+					    <select class="form-control" id="mes3" formControlName="mes3"><!-- formControlName="rol" -->
+					      <option value="">Tercer mes</option>
+					      <option value="0.25">25%</option>
+					      <option value="0.50">50%</option>
+					      <option value="0.75">75%</option>
+					      <option value="100">100%</option>
+					    </select>
+					    <!--<i class="fa fa-check-circle check" *ngIf="mesForm.controls.mes1.valid">
+					    </i>
+					    <i class="fa fa-exclamation-circle uncheck" *ngIf="mesForm.controls.mes1.invalid && mesForm.controls.mes1.touched">
+					    </i>-->
+					</div>
+					<br>
+					
+					<div class="form-group"> 
+					  <div class="col-sm-offset-2 col-sm-10">
+					      <button type="submit" class="btn btn-default" [disabled]="!mesForm.valid">
+					      	Enviar
+					      </button>
+					      <br>
+					      <hr>
+					      <p class="col-12 alert alert-danger" *ngIf="!mesForm.valid">
+					      	Por favor, completa todos los campos!
+					      </p>
+					  </div>
+					</div>
+
+					<hr>
+				  </div>
+
+					<!--<pre>
+						valor formulario: {{ mesForm.value | json }}
+						<hr>
+						Estado del formulario {{ mesForm.status | json }}
+						<hr>
+						Valor del objeto {{ mes | json }}
+					</pre>-->
+
+				</form>
+				</div>
+
+
+			<div class="col-xs-4 col-ms-4 col-md-4">
+				<div class="p-2">
+					<div class="principal">
+						<h3>Hola <span id="negrilla"></span> <!--{{ _registroService.registro.auth.uid }}-->, bienvenido!</h3>
+						<hr>
+						<h5>El siguiente gráfico evalua sus ventas en los últimos 3 meses</h5>
+						<br>
+						<section id="grafico">
+							<div style="display: block">
+							  <canvas baseChart
+							              [data]="doughnutChartData"
+							              [labels]="doughnutChartLabels"
+							              [chartType]="doughnutChartType"
+							              (chartHover)="chartHovered($event)"
+							              (chartClick)="chartClicked($event)">
+							  </canvas>
+							</div>
+							<button type="button" class="btn btn-default btn-block" (click)="numeros_random()">
+								Actualizar información de ventas
+							</button>
+						</section>
+					
+					</div>
+
+					<script>
+						  var dataPoints = [];
+							$.getJSON("https://canvasjs.com/services/data/datapoints.php?xstart=1&ystart=10&length=100&type=json", function(data) {  
+							    $.each(data, function(key, value){
+							        dataPoints.push({x: value[0], y: parseInt(value[1])});
+							    });
+							    var chart = new CanvasJS.Chart("chartContainer",{
+							        title:{
+							            text:"Rendering Chart with dataPoints from External JSON"
+							        },
+							        data: [{
+							        type: "line",
+							            dataPoints : dataPoints,
+							        }]
+							    });
+							    chart.render();
+							});
+					</script>
+
+
+
+
+					<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+					<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+					<script type="text/javascript">
+					window.onload = function () {
+					var dataPoints = [];
+					$.getJSON("https://canvasjs.com/services/data/datapoints.php?xstart=1&ystart=10&length=100&type=json", function(data) {  
+						$.each(data, function(key, value){
+							dataPoints.push({x: value[0], y: parseInt(value[1])});
+						});
+						var chart = new CanvasJS.Chart("chartContainer",{
+							title:{
+								text:"Rendering Chart with dataPoints from External JSON"
+							},
+							data: [{
+								type: "line",
+								dataPoints : dataPoints,
+							}]
+						});
+						chart.render();
+					});
+					}
+					</script>
+
+				</div>
+			</div>
+
+
+			<div class="col-xs-4 col-ms-4 col-md-4">
+				<section>
+					<div class="container">
+					  <h2>Tabla ventas</h2>
+					  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident fugit minima necessitatibus</p>            
+					  <table class="table">
+					    <thead>
+					      <tr>
+					        <th>Mes 1</th>
+					        <th>Mes 2</th>
+					        <th>Mes 3</th>
+					      </tr>
+					    </thead>
+					    <tbody>
+					      <tr *ngFor="let mes of meses">
+					        <td> {{ mes.mes1 }} </td>
+					        <td> {{ mes.mes2 }} </td>
+					        <td> {{ mes.mes3 }} </td>
+					      </tr>
+					    </tbody>
+					  </table>
+					</div>		
+				</section>
+			</div>
+
+			</div>
+
+		</div>
+	
+
+<!--
+<agm-map [latitude]="activity.venue?.latitude" [longitude]="activity.venue?.longitude">
+        <agm-marker 
+        [latitude]="activity.venue?.latitude" 
+        [longitude]="activity.venue?.longitude"
+        >
+        </agm-marker>
+      </agm-map>
+-->
+
+	</div>
+
+</div>
